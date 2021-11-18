@@ -1,6 +1,6 @@
-use rand::Rng;
-use std::cmp::Ordering;
-use std::io;
+use rand::Rng; // random Range
+use std::cmp::Ordering;  // standard library compare  
+use std::io; // standard library input/output
 
 fn main() {
     println!("Guess the number!");
@@ -16,7 +16,13 @@ fn main() {
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to read line");
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+            
+            
+            //  match Ok(num) ger en siffra eller Err(_) klumpar ihop feldumpar och fortsätter
+         let guess: u32 = match guess.trim().parse() {  
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("You guessed: {}", guess);
 
