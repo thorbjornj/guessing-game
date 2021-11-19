@@ -1,4 +1,4 @@
-use rand::Rng; // random Range     ex: let mut guess = String::new();   The :: syntax in the ::new line indicates that new is an associated function of the String type. 
+use rand::Rng; // random Range       
 use std::cmp::Ordering;  // standard library compare  
 use std::io; // standard library input/output
 
@@ -11,11 +11,12 @@ fn main() {
     loop {
         println!("Please input your number!");
 
-        let mut guess = String::new();
+        let mut guess = String::new();  //let mut guess = String::new(); line has created a mutable variable that is currently bound to a new, empty instance of a String
 
-        io::stdin()
-            .read_line(&mut guess)  // &mut 
-            .expect("Failed to read line");
+        io::stdin()  // Now we’ll call the stdin function from the io module. If we hadn’t put the use std::io line at the beginning of the program, we could have written this function call as std::io::stdin. 
+            .read_line(&mut guess)  // The & indicates that this argument is a reference, which gives you a way to let multiple parts of your code access one piece of data without needing to copy that data into memory multiple times..... For now, all you need to know is that like variables, references are immutable by default. Hence, you need to write &mut guess rather than &guess to make it mutable.
+            
+            .expect("Failed to read line"); //When you call a method with the .method_name() syntax, it’s often wise to introduce a newline and other whitespace to help break up long lines. We could have written this code as: io::stdin().read_line(&mut guess).expect("Failed to read line");  https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html
             
             
             //  match Ok(num) ger en siffra eller Err(_) klumpar ihop feldumpar och fortsätter
